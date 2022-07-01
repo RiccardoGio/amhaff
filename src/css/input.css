@@ -1,0 +1,90 @@
+/*------------------------------------------------------------------
+    Font
+  ------------------------------------------------------------------*/
+@font-face {
+  font-family: 'Neue Machina';
+  src: url('../type/PPNeueMachina-Black.woff2');
+  font-weight: 800;
+}
+@font-face {
+    font-family: 'Neue Machina';
+    src: url('../type/PPNeueMachina-Ultrabold.woff2');
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'Neue Machina';
+    src: url('../type/PPNeueMachina-Regular.woff2');
+    font-weight: 400;
+}
+
+/*------------------------------------------------------------------
+    Tailwind
+------------------------------------------------------------------*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Neue Machina', system-ui, sans-serif;
+  }
+}
+
+/*------------------------------------------------------------------
+    COLORS
+------------------------------------------------------------------*/
+:root {
+    --hue: 0;
+    /* SKY */
+    --sky-hue: var(--hue) + 189;
+    --sky-saturation:95%;
+    --sky-luminosity: 43%;
+    --sky-alpha: 1;
+    --sky-bg-color: hsla(calc(var(--sky-hue)), var(--sky-saturation),var(--sky-luminosity),var(--sky-alpha));
+    --night: #000;
+
+    /* SUN */
+    --sun-hue: 50 + var(--hue);
+    --sun-saturation: 98%;
+    --sun-luminosity: 64%;
+    --sun-alpha: 1;
+    --sun-bg-color: hsla(calc(var(--sun-hue)), var(--sun-saturation), var(--sun-luminosity), var(--sun-alpha));
+
+}
+
+.sky {
+    background-color: var(--sky-bg-color);
+}
+
+.sun-gradient {
+    background: radial-gradient(circle at bottom, var(--sun-bg-color), transparent);
+}
+
+.moon {
+    background: radial-gradient(circle at top, #91a3ba, white)
+}
+
+@keyframes sunrise {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes night-fall {
+    0% {
+        background-color: var(--night);
+    }
+    100% {
+        background-color: var(--sky-bg-color);
+    }
+}
+
+.animate-sunrise {
+    animation: 3s cubic-bezier(.2,.55,.43,1.01) 0.4s backwards sunrise;
+}
+.animate-night {
+    animation: 4s cubic-bezier(.2,.55,.43,1.01) 0s backwards night-fall;
+}
